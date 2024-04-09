@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
 
     }
     // Update is called once per frame
@@ -101,7 +100,6 @@ public class PlayerController : MonoBehaviour
         {
 
             throwPower += 500f*Time.deltaTime;
-            Debug.Log(throwPower);
             if (throwPower >= 1000)
             {
                 throwPower = 1000;
@@ -158,5 +156,9 @@ public class PlayerController : MonoBehaviour
     {
         Bomb.SetActive(true);
         throwPower = 0;
+    }
+    public void Hit()
+    {
+        playerAnimator.SetTrigger("Hit");
     }
 }
