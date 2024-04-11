@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Explosion : MonoBehaviour
 {
@@ -31,12 +32,11 @@ public class Explosion : MonoBehaviour
         {
             for(int k=-radiusInt; k<= radiusInt; k++)
             {
-                Vector3 checkCellPos = new Vector3(transform.position.x + i, transform.position.y + k, 0);
+                Vector2 checkCellPos = new Vector2(transform.position.x + i, transform.position.y + k);
                 float distance = Vector2.Distance(transform.position, checkCellPos) - 0.0001f;
 
-                if (distance <= radiusInt)
+                if (distance <= circleCollider.radius)
                 {
-                    //Collider2D overCollider2d = Physics2D.OverlapCircle(checkCellPos, 0.01f);
                     ground.transform.gameObject.GetComponent<Brick>().RemoveTile(checkCellPos);
                 }
             }
@@ -48,21 +48,15 @@ public class Explosion : MonoBehaviour
     {
         if (collision.gameObject.layer.Equals(LayerMask.NameToLayer("Unit"))) 
         {
-            player.Hit();
+            player.Hit();//나중에 콜리전.게임오브젝트.겟컴포넌트<유닛>으로 뺄것 안되면 개인이 처리하게끔 할것
+
             //타일맵파괴
         }
 
         if (collision.gameObject.CompareTag("Ground"))
         {
             DestroyTile(collision.gameObject);
-            //Debug.Log(collision.gameObject.name+"ssss");
-            //if(Physics2D.OverlapCircle(this.transform.position, 1))
-            //{
-            //    Debug.Log(collision.gameObject.name+"aaaaa");
-            //    DestroyTile();
-            //}
         }
-
 
 
         transform.parent.gameObject.SetActive(false);

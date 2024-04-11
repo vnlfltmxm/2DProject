@@ -19,6 +19,7 @@ public class Brick : MonoBehaviour
         
     }
 
+
     public void RemoveTile(Vector3 pos)
     {
         Vector3Int cellPos = tilemap.WorldToCell(pos);

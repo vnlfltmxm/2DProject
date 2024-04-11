@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 288784929}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -534,7 +534,7 @@ GameObject:
   - component: {fileID: 669353606}
   - component: {fileID: 669353605}
   - component: {fileID: 669353608}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tilemap
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -776,7 +776,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 4.44
 --- !u!1 &817756333
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,7 +881,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 817756333}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.38, y: 4.36, z: 0}
+  m_LocalPosition: {x: -6.38, y: 18.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -970,7 +970,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  dirX: 0
   isReThrow: 1
+  moveMoent: {x: 0, y: 0}
+  bombPos: {x: 0, y: 0}
   bombThrowPos: {x: 0, y: 0}
   throwPower: 10
 --- !u!120 &817756341
@@ -1104,7 +1107,7 @@ MonoBehaviour:
   width: 50
   height: 30
   adjustment: -10
-  seed: 5
+  seed: 2
   smooth: 10
   topTile: {fileID: 11400000, guid: bb3520a55781a954abe89b92bcdc313f, type: 2}
   soilTile: {fileID: 11400000, guid: 32661da8ce8dd3644bc6468732fc6bf5, type: 2}

@@ -8,8 +8,6 @@ public class Bomb : MonoBehaviour
     Rigidbody2D rigid;
     Vector2 destination = Vector2.zero;
 
-    Collider2D explosinRange;
-
     // Start is called before the first frame update
     private void Awake()
     {
