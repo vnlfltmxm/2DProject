@@ -7,12 +7,14 @@ public class Bomb : MonoBehaviour
     public GameObject Parent;
     Rigidbody2D rigid;
     Vector2 destination = Vector2.zero;
+    BombState state;
 
     // Start is called before the first frame update
     private void Awake()
     {
         Parent = transform.parent.gameObject;
         rigid = GetComponent<Rigidbody2D>();
+        InitState();
     }
     void Start()
     {
@@ -25,6 +27,7 @@ public class Bomb : MonoBehaviour
         transform.position = Parent.transform.position;
         destination = GetComponentInParent<PlayerController>().bombThrowPos;
         transform.GetChild(0).gameObject.SetActive(false);
+        state.ChangeState((BombStateName)GetComponentInParent<PlayerController>().bombIndex);
         gameObject.transform.SetParent(null);
         rigid.AddForce(destination);
     }
@@ -32,6 +35,7 @@ public class Bomb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        rigid.AddForce(GameManger.Instance.wind*Time.deltaTime);
     }
 
      void OnTriggerEnter2D(Collider2D collision)
@@ -41,9 +45,24 @@ public class Bomb : MonoBehaviour
             return;
         }
         gameObject.transform.SetParent(Parent.transform);
+        
+
         transform.GetChild(0).gameObject.SetActive(true);
         //this.gameObject.SetActive(false);
-        
+
+    }
+
+    private void OnDisable()
+    {
+        state.ChangeState(BombStateName.Normal);
+        Parent.GetComponentInParent<PlayerController>().bombIndex = 0;
+    }
+
+
+    void InitState()
+    {
+        state = new BombState(BombStateName.Normal, new NormalBomb(this));
+        state.AddState(BombStateName.Plus, new PlusBomb(this));
     }
 
 }

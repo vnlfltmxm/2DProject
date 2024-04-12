@@ -66,9 +66,14 @@ public class Explosion : MonoBehaviour
     {
 
 
-         if (player.isReThrow)
-        {
-            player.ReThrow();
-        }
+        // if (player.isReThrow)
+        //{
+        //    player.ReThrow();
+        //}
+        //else
+        //{
+            player.playerState.ChangeState(StateName.Move);
+
+        //}
     }
 }

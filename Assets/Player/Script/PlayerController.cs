@@ -8,18 +8,24 @@ using UnityEditor.U2D.Path;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] Image image;
+    PlayerItemUI playerItemUI;
     public float speed = 5.0f;
 
     float y = 0;
     float throwRayPosX = 0;
     public float dirX = 0;
     float dirY = 0;
-    public bool isReThrow = true;
+    public float bombIndex = 0;
+    public int[] item;
 
-    PlayerState playerState;
+    PlayerUI playerUI;
+
+    public PlayerState playerState;
     LineRenderer line;
     SpriteRenderer spriteRenderer;
     Animator playerAnimator;
@@ -37,8 +43,13 @@ public class PlayerController : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         line = GetComponent<LineRenderer>();
+        playerUI = GetComponent<PlayerUI>();
         Bomb = transform.GetChild(1).gameObject;
         playerState = new PlayerState(StateName.Move, new Move(this));
+        item = new int[(int)BombStateName.Last];
+        item[0] = 1;
+        item[1] = 1;
+        playerItemUI =image.GetComponent<PlayerItemUI>();
         InitState();
     }
     // Start is called before the first frame update
@@ -58,11 +69,38 @@ public class PlayerController : MonoBehaviour
             playerState.ChangeState(StateName.ThrowReady);
 
 
+        ItemSelect();
+
+
+
         ThrowRay();
         //Throw();
         
     }
+    void ItemSelect()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            playerUI.EnabledItem();
+        }
+        else if (Input.GetKey(KeyCode.Tab))
+        {
+            playerItemUI.ChangeColor(item);
+        }
+        else if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            playerUI.DisabledItem();
+            if (item[playerItemUI.index] > 0) 
+            {
+                bombIndex = playerItemUI.index;
+                if (playerItemUI.index != 0)
+                {
+                    item[playerItemUI.index]--;
 
+                }
+            }
+        }
+    }
     void OnMove(InputValue inputValue)
     {
         line.enabled = true;
@@ -140,15 +178,15 @@ public class PlayerController : MonoBehaviour
     //    }
     //}
 
-    public void ReThrow()
-    {
-        playerAnimator.SetTrigger("ThrowReady");
-        playerAnimator.SetTrigger("Re");
-        playerAnimator.SetTrigger("ThrowTr");
-        isReThrow = false;
-        playerAnimator.ResetTrigger("Re");
+    //public void ReThrow()
+    //{
+    //    playerAnimator.SetTrigger("ThrowReady");
+    //    playerAnimator.SetTrigger("Re");
+    //    playerAnimator.SetTrigger("ThrowTr");
+    //    isReThrow = false;
+    //    playerAnimator.ResetTrigger("Re");
 
-    }
+    //}
    
     void ThrowRay()
     {
@@ -180,8 +218,7 @@ public class PlayerController : MonoBehaviour
     void SetBomb()
     {
         Bomb.SetActive(true);
-        playerState.ChangeState(StateName.Move);
-        throwPower = 0;
+        
     }
     public void Hit()
     {

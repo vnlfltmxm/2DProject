@@ -6,16 +6,19 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class ThrowReady : BaseState
 {
     Animator playerAnimator;
+    PlayerUI playerUI;
 
     public ThrowReady(PlayerController controller) : base(controller)
     {
         playerAnimator = controller.GetComponent<Animator>();
+        playerUI = controller.GetComponent<PlayerUI>();
     }
 
     public override void OnEnterState()
     {
         playerAnimator.SetTrigger("ThrowReady");
-
+        playerUI.EnabledSlider();
+        
     }
     public override void OnUpdateState()
     {
@@ -27,7 +30,8 @@ public class ThrowReady : BaseState
     }
     public override void OnExitState()
     {
-
+        Controller.throwPower = 0;
+        playerUI.DisabledSlider();
     }
 
     void Throw()
