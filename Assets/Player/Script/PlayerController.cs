@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Image image;
     PlayerItemUI playerItemUI;
     public float speed = 5.0f;
+    public int hp = 3;
+    public float moveGage = 100;
 
     float y = 0;
     float throwRayPosX = 0;
@@ -23,11 +25,11 @@ public class PlayerController : MonoBehaviour
     public float bombIndex = 0;
     public int[] item;
 
-    PlayerUI playerUI;
+    public PlayerUI playerUI;
 
     public PlayerState playerState;
     LineRenderer line;
-    SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
     Animator playerAnimator;
     Rigidbody2D rigid;
     public Vector2 moveMoent = Vector2.zero;
@@ -49,6 +51,8 @@ public class PlayerController : MonoBehaviour
         item = new int[(int)BombStateName.Last];
         item[0] = 1;
         item[1] = 1;
+        item[2] = 1;
+        dirX = 1;
         playerItemUI =image.GetComponent<PlayerItemUI>();
         InitState();
     }
@@ -62,20 +66,27 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //PlayerMove();
-        
-        playerState.UpdateState();
+        if (GameManger.Instance.playerTurn)
+        {
 
-        if (Input.GetKeyDown(KeyCode.Space))
-            playerState.ChangeState(StateName.ThrowReady);
+            playerState.UpdateState();
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                GameManger.Instance.playerThrow = true;
+                playerState.ChangeState(StateName.ThrowReady);
+
+            }
 
 
-        ItemSelect();
+            ItemSelect();
 
 
 
-        ThrowRay();
-        //Throw();
-        
+            ThrowRay();
+            //Throw();
+        }
+
     }
     void ItemSelect()
     {
@@ -103,21 +114,7 @@ public class PlayerController : MonoBehaviour
     }
     void OnMove(InputValue inputValue)
     {
-        line.enabled = true;
         moveMoent = inputValue.Get<Vector2>();
-        if (moveMoent.x != 0)
-        {
-            dirX = moveMoent.x;
-        }
-
-        if (moveMoent.x > 0)
-        {
-            spriteRenderer.flipX = false;
-        }
-        else if (moveMoent.x < 0)
-        {
-            spriteRenderer.flipX = true;
-        }
 
     }
 
@@ -190,6 +187,7 @@ public class PlayerController : MonoBehaviour
    
     void ThrowRay()
     {
+        line.enabled = true;
         dirY += y * 1.0f * Time.deltaTime;
 
         if (dirY > 1 || dirY < -1)
@@ -200,11 +198,9 @@ public class PlayerController : MonoBehaviour
         throwRayPosX = math.sqrt(dirX * dirX - dirY * dirY);
 
         bombPos = new Vector2(throwRayPosX * dirX, dirY);
-        RaycastHit2D rayThrow = Physics2D.Raycast(transform.position, bombPos, dirX);
 
         line.SetPosition(0, transform.position);
-        line.SetPosition(1, transform.position + (Vector3)bombPos);
-        Debug.DrawRay(transform.position, bombPos, Color.red);
+        line.SetPosition(1, transform.position + (Vector3)bombPos*4);
 
 
     }
@@ -218,10 +214,12 @@ public class PlayerController : MonoBehaviour
     void SetBomb()
     {
         Bomb.SetActive(true);
-        
+        line.enabled = false;
+        enabled = false;
     }
     public void Hit()
     {
         playerAnimator.SetTrigger("Hit");
+        hp--;
     }
 }

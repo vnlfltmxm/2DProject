@@ -7,6 +7,7 @@ public enum BombStateName
 {
     Normal,
     Plus,
+    Horming,
 
     Last
 

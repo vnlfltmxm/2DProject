@@ -4,6 +4,20 @@ using UnityEngine;
 
 public class ItemBox : MonoBehaviour
 {
+    Rigidbody2D rd;
+    float time;
+    float maxTime;
+
+    private void Awake()
+    {
+        rd = transform.parent.GetComponent<Rigidbody2D>();
+        maxTime = 5;
+    }
+    private void OnEnable()
+    {
+        rd.gravityScale = 0.3f;
+        time = 0;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +27,11 @@ public class ItemBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        time += Time.deltaTime;
+        if(time > maxTime)
+        {
+            rd.gravityScale = 1.0f;
+        }
     }
 
 
@@ -24,13 +42,12 @@ public class ItemBox : MonoBehaviour
         {
             int random = Random.Range(1,(int)BombStateName.Last);
             collision.gameObject.GetComponent<PlayerController>().item[random]++;
-            Debug.Log(collision.gameObject.GetComponent<PlayerController>().item[random]);
         }
 
         if (!collision.CompareTag("Ground"))
         {
-            gameObject.SetActive(false);
-
+            GameManger.Instance.itemBoxPool.Enqueue(transform.parent.gameObject);
+            transform.parent.gameObject.SetActive(false);
         }
 
     }

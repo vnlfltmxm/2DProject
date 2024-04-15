@@ -16,7 +16,7 @@ public class NormalBomb : BombBaseState
     }
     public  override void OnUpdateState()
     {
-        
+       bomb.rigid.AddForce(GameManger.Instance.wind * Time.deltaTime);
     }
     public  override void OnFixedUpdateState()
     {

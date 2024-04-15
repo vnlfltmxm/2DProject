@@ -16,7 +16,7 @@ public class PlayerItemUI : MonoBehaviour
         parent = GetComponentInParent<Canvas>().transform.parent.gameObject;
         image = GetComponent<Image>();
         image.sprite = itemImage[index];
-        transform.position = parent.transform.position + new Vector3(0, 3, 0);
+        transform.position = parent.transform.position + new Vector3(0, 5, 0);
     }
 
     private void Update()
@@ -26,7 +26,7 @@ public class PlayerItemUI : MonoBehaviour
 
     private void OnEnable()
     {
-        transform.position = parent.transform.position + new Vector3(0, 3, 0);
+        transform.position = parent.transform.position + new Vector3(0, 5, 0);
     }
 
     private void OnDisable()

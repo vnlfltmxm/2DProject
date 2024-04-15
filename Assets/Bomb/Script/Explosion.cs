@@ -64,16 +64,8 @@ public class Explosion : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-
-
-        // if (player.isReThrow)
-        //{
-        //    player.ReThrow();
-        //}
-        //else
-        //{
-            player.playerState.ChangeState(StateName.Move);
-
-        //}
+        player.playerState.ChangeState(StateName.Move);
+        GameManger.Instance.playerTurn = false;
+        //GameManger.Instance.playerThrow = false;
     }
 }

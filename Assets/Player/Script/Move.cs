@@ -17,11 +17,21 @@ public class Move : BaseState
 
     public override void OnEnterState()
     {
-
+        Controller.enabled = true;
     }
     public  override void OnUpdateState()
     {
-        PlayerMove();
+        PlayerDirx();
+
+        if (Controller.moveGage > 0)
+        {
+            PlayerMove();
+
+        }
+        else
+        {
+            Controller.playerUI.DisabledMoveGage();
+        }
     }
     public  override void OnFixedUpdateState()
     {
@@ -40,12 +50,36 @@ public class Move : BaseState
 
         playerAnimator.SetBool("IsMove", true);
 
+        
+
         if (Controller.moveMoent.x == 0)
         {
             playerAnimator.SetBool("IsMove", false);
+            Controller.playerUI.DisabledMoveGage();
+        }
+        else
+        {
+            Controller.playerUI.EnabledMoveGage();
+            Controller.moveGage -= 0.1f;
         }
 
+        
     }
 
-    
+    void PlayerDirx()
+    {
+        if (Controller.moveMoent.x != 0)
+        {
+            Controller.dirX = Controller.moveMoent.x;
+        }
+        if (Controller.moveMoent.x > 0)
+        {
+            Controller.spriteRenderer.flipX = false;
+        }
+        else if (Controller.moveMoent.x < 0)
+        {
+            Controller.spriteRenderer.flipX = true;
+        }
+    }
+
 }

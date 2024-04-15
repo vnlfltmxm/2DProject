@@ -7,7 +7,8 @@ public class MapCreat : MonoBehaviour
 {
     [SerializeField] int width;
     [SerializeField] int height;
-    [SerializeField] int adjustment = -10;
+    [SerializeField] int adjustmentX = -10;
+    [SerializeField] int adjustmentY = -10;
     [SerializeField] float seed;
     [SerializeField] float smooth;
     [SerializeField] TileBase topTile;
@@ -83,11 +84,11 @@ public class MapCreat : MonoBehaviour
             {
                 if (k + 1 < height && map[i, k] == 1 && map[i, k + 1] == 0)
                 {
-                    tilemap.SetTile(new Vector3Int(i + adjustment, k + adjustment, 0), topTile);
+                    tilemap.SetTile(new Vector3Int(i + adjustmentX, k + adjustmentY, 0), topTile);
                 }
                 else if (map[i, k] == 1 )
                 {
-                    tilemap.SetTile(new Vector3Int(i + adjustment, k + adjustment, 0), soilTile);
+                    tilemap.SetTile(new Vector3Int(i + adjustmentX, k + adjustmentY, 0), soilTile);
                 }
             }
         }

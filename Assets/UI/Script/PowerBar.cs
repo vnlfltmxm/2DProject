@@ -12,8 +12,8 @@ public class PowerBar : MonoBehaviour
     Slider slider;
     private void Awake()
     {
-        parent=GetComponentInParent<Canvas>().transform.parent.gameObject;
-        slider =GetComponent<Slider>();
+        parent = GetComponentInParent<Canvas>().transform.parent.gameObject;
+        slider = GetComponent<Slider>();
 
         transform.position = parent.transform.position + (Vector3)adjustment;
     }
@@ -27,7 +27,7 @@ public class PowerBar : MonoBehaviour
 
     private void OnEnable()
     {
-        dirX = -parent.GetComponent<PlayerController>().dirX;
+        dirX = -parent.GetComponent<PlayerController>().dirX*5;
         adjustment = new Vector2(dirX, 0);
         transform.position = parent.transform.position + (Vector3)adjustment;
     }
