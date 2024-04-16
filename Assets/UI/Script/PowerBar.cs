@@ -15,11 +15,11 @@ public class PowerBar : MonoBehaviour
         parent = GetComponentInParent<Canvas>().transform.parent.gameObject;
         slider = GetComponent<Slider>();
 
-        transform.position = parent.transform.position + (Vector3)adjustment;
     }
 
     private void Update()
     {
+        transform.position = parent.transform.position + (Vector3)adjustment;
         value = parent.GetComponent<PlayerController>().throwPower;
         slider.value = value;
         ChangeColor();
@@ -29,7 +29,6 @@ public class PowerBar : MonoBehaviour
     {
         dirX = -parent.GetComponent<PlayerController>().dirX*5;
         adjustment = new Vector2(dirX, 0);
-        transform.position = parent.transform.position + (Vector3)adjustment;
     }
 
     void ChangeColor()

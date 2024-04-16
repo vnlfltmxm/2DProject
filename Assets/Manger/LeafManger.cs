@@ -6,6 +6,7 @@ public class LeafManger : Singleton<LeafManger>
 {
     [SerializeField] GameObject leafPrefab;
     [SerializeField] GameObject bg;
+    [SerializeField] Camera mainCamera;
     [SerializeField] int leafCount;
 
     Queue<GameObject> leafQueue = new Queue<GameObject>();
@@ -32,7 +33,7 @@ public class LeafManger : Singleton<LeafManger>
     {
         while (true)
         {
-            yield return new WaitForSecondsRealtime(2);
+            yield return new WaitForSecondsRealtime(1.5f);
 
             for(int i =0; i < 5; i++)
             {
@@ -41,10 +42,26 @@ public class LeafManger : Singleton<LeafManger>
                 leaf.SetActive(false);
                 leaf.SetActive(true);
 
-                float rd = Random.Range(-bgCollider.size.x * 3 - 5, bgCollider.size.x * 3 + 5);
-                float rdY = Random.Range(bgCollider.size.y * 3 - 5, bgCollider.size.y * 3 + 5);
+                float cameraY = mainCamera.transform.position.y + mainCamera.orthographicSize;
+                float minX = mainCamera.transform.position.x - mainCamera.orthographicSize * mainCamera.aspect;
+                float maxX = mainCamera.transform.position.x + mainCamera.orthographicSize * mainCamera.aspect;
+                //float rd = Random.Range(-bgCollider.size.x * 3 - 5, bgCollider.size.x * 3 + 5);
+                //float rd = Random.Range(minX - 15, maxX + 15);
+                float leftRd = Random.Range(minX - 15, maxX);
+                float rightRd = Random.Range(minX , maxX + 15);
+                //float rdY = Random.Range(bgCollider.size.y * 3 + 5, bgCollider.size.y * 3 + 10);
+                float rdY = Random.Range(cameraY + 1, cameraY + 3);
 
-                leaf.transform.position = new Vector3(rd, rdY, 0);
+                if (GameManger.Instance.wind.x < 0)
+                {
+                    leaf.transform.position = new Vector3(rightRd, rdY, 0);
+
+                }
+                else
+                {
+                    leaf.transform.position = new Vector3(leftRd, rdY, 0);
+                }
+
             }
 
 

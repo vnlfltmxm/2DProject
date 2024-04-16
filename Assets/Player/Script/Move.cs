@@ -18,12 +18,13 @@ public class Move : BaseState
     public override void OnEnterState()
     {
         Controller.enabled = true;
+        Controller.moveGage = 100;
     }
     public  override void OnUpdateState()
     {
         PlayerDirx();
 
-        if (Controller.moveGage > 0)
+        if (Controller.moveGage > 0 && Controller.isGround) 
         {
             PlayerMove();
 

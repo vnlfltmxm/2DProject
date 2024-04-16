@@ -21,12 +21,12 @@ public class PlayerItemUI : MonoBehaviour
 
     private void Update()
     {
+        transform.position = parent.transform.position + new Vector3(0, 5, 0);
         ChoseItem();
     }
 
     private void OnEnable()
     {
-        transform.position = parent.transform.position + new Vector3(0, 5, 0);
     }
 
     private void OnDisable()

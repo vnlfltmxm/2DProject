@@ -25,6 +25,7 @@ public class PlusBomb : BombBaseState
     public override void OnExitState()
     {
         ReThrow();
+        bomb.Parent.GetComponent<PlayerController>().ItemUse(BombStateName.Plus);
     }
 
     public void ReThrow()

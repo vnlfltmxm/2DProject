@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class Explosion : MonoBehaviour
 {
+    [SerializeField] GameObject effect;
     PlayerController player;
     CircleCollider2D circleCollider;
 
@@ -42,8 +43,12 @@ public class Explosion : MonoBehaviour
             }
         }
     }
-    
 
+    private void OnEnable()
+    {
+        effect.SetActive(true);
+        effect.transform.position = transform.position;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer.Equals(LayerMask.NameToLayer("Unit"))) 
@@ -58,7 +63,7 @@ public class Explosion : MonoBehaviour
             DestroyTile(collision.gameObject);
         }
 
-
+        //CameraController.target = player.gameObject;
         transform.parent.gameObject.SetActive(false);
     }
 

@@ -12,7 +12,6 @@ public class GameManger : Singleton<GameManger>
     public bool playerThrow = false;
     public Queue<GameObject> itemBoxPool = new Queue<GameObject>();
 
-
     PlayerController playerController;
     BoxCollider2D bgCollider;
     int windSpeed;
@@ -20,21 +19,24 @@ public class GameManger : Singleton<GameManger>
 
     private void Awake()
     {
-        for (int i = 0; i < 3; i++)
-        {
-            GameObject itemBox = Instantiate(itemBoxPrefab);
-            itemBoxPool.Enqueue(itemBox);
-            itemBox.SetActive(false);
-        }
+        playerTurn = false;
         bgCollider = backGround.GetComponent<BoxCollider2D>();
        playerController = player.GetComponent<PlayerController>();
+        
        CreatWind();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject itemBox = Instantiate(itemBoxPrefab);
+            itemBoxPool.Enqueue(itemBox);
+            itemBox.SetActive(false);
+        }
+        CameraController.instanse.StartCamera();
+        Invoke("StartGame", 2);
     }
 
     // Update is called once per frame
@@ -44,10 +46,15 @@ public class GameManger : Singleton<GameManger>
         //{
         //    playerController.playerState.ChangeState(StateName.Move);
         //}
+
+       
         SpawItem();
 
     }
-
+    void StartGame()
+    {
+        playerTurn = true;
+    }
     void CreatWind()
     {
         windDir = Random.Range(0, 2);
@@ -64,16 +71,30 @@ public class GameManger : Singleton<GameManger>
 
     void SpawItem()
     {
-        if (Input.GetKeyDown(KeyCode.P) && itemBoxPool.Count > 0) 
+        if (Input.GetKeyDown(KeyCode.P)) 
         {
-            GameObject itemBox = itemBoxPool.Dequeue();
-            itemBox.SetActive(true);
-            //itemBoxPool.Enqueue(itemBox);
+            if (itemBoxPool.Count > 0)
+            {
+                GameObject itemBox = itemBoxPool.Dequeue();
+                itemBox.SetActive(true);
+                //itemBoxPool.Enqueue(itemBox);
 
-            float rd = Random.Range(-bgCollider.size.x * 3, bgCollider.size.x * 3);
+                float rd = Random.Range(-bgCollider.size.x * 3, bgCollider.size.x * 3);
 
-            itemBox.transform.position = new Vector3(rd, bgCollider.size.y * 3, 0);
-            Debug.Log(itemBoxPool.Count);
+                itemBox.transform.position = new Vector3(rd, bgCollider.size.y * 3, 0);
+            }
+            else
+            {
+                playerTurn = true;
+            }
+            
+                ChangeWind();
+
         }
+    }
+
+    public void ChangeWind()
+    {
+        CreatWind();
     }
 }

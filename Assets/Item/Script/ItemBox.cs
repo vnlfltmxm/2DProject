@@ -15,6 +15,7 @@ public class ItemBox : MonoBehaviour
     }
     private void OnEnable()
     {
+        CameraController.instanse.FollowCamera(this.gameObject);
         rd.gravityScale = 0.3f;
         time = 0;
     }
@@ -41,7 +42,15 @@ public class ItemBox : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             int random = Random.Range(1,(int)BombStateName.Last);
-            collision.gameObject.GetComponent<PlayerController>().item[random]++;
+            if(collision.gameObject.GetComponent<PlayerController>() == null)
+            {
+                collision.gameObject.GetComponentInParent<PlayerController>().item[random]++;
+            }
+            else
+            {
+                collision.gameObject.GetComponent<PlayerController>().item[random]++;
+
+            }
         }
 
         if (!collision.CompareTag("Ground"))
@@ -50,6 +59,10 @@ public class ItemBox : MonoBehaviour
             transform.parent.gameObject.SetActive(false);
         }
 
+        if (!collision.CompareTag("Bomb"))
+        {
+            GameManger.Instance.playerTurn = true;
+        }
     }
 
 }

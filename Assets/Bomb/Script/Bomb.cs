@@ -7,7 +7,6 @@ public class Bomb : MonoBehaviour
 {
     public GameObject Parent;
     public Rigidbody2D rigid;
-    bool isPlayerCheck;
     Vector2 destination = Vector2.zero;
     BombState state;
 
@@ -26,12 +25,12 @@ public class Bomb : MonoBehaviour
 
     private void OnEnable()
     {
-        transform.position = Parent.transform.position;
+        transform.position = Parent.transform.position + (Vector3)Parent.GetComponent<PlayerController>().bombPos * 2;
         destination = GetComponentInParent<PlayerController>().bombThrowPos * 1.5f;
         transform.GetChild(0).gameObject.SetActive(false);
         state.ChangeState((BombStateName)GetComponentInParent<PlayerController>().bombIndex);
         gameObject.transform.SetParent(null);
-        isPlayerCheck = false;
+        CameraController.instanse.FollowCamera(this.gameObject);
         rigid.AddForce(destination);
     }
 
@@ -49,10 +48,6 @@ public class Bomb : MonoBehaviour
 
      void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isPlayerCheck)
-        {
-            return;
-        }
         gameObject.transform.SetParent(Parent.transform);
         
 
@@ -61,13 +56,6 @@ public class Bomb : MonoBehaviour
 
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            isPlayerCheck = true;
-        }
-    }
 
     private void OnDisable()
     {

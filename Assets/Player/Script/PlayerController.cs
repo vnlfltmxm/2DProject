@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] Image image;
-    PlayerItemUI playerItemUI;
+    public PlayerItemUI playerItemUI;
     public float speed = 5.0f;
     public int hp = 3;
     public float moveGage = 100;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public int[] item;
 
     public PlayerUI playerUI;
+    public bool isGround = false;
 
     public PlayerState playerState;
     LineRenderer line;
@@ -68,15 +70,10 @@ public class PlayerController : MonoBehaviour
         //PlayerMove();
         if (GameManger.Instance.playerTurn)
         {
-
+            CameraController.instanse.FollowCamera(this.gameObject);
             playerState.UpdateState();
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                GameManger.Instance.playerThrow = true;
-                playerState.ChangeState(StateName.ThrowReady);
-
-            }
+            Throw();
 
 
             ItemSelect();
@@ -87,6 +84,19 @@ public class PlayerController : MonoBehaviour
             //Throw();
         }
 
+        if (hp <= 0)
+        {
+            playerAnimator.SetBool("Die", true);
+        }
+    }
+
+    void Throw()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerState.ChangeState(StateName.ThrowReady);
+
+        }
     }
     void ItemSelect()
     {
@@ -104,13 +114,13 @@ public class PlayerController : MonoBehaviour
             if (item[playerItemUI.index] > 0) 
             {
                 bombIndex = playerItemUI.index;
-                if (playerItemUI.index != 0)
-                {
-                    item[playerItemUI.index]--;
-
-                }
             }
         }
+    }
+
+    public void ItemUse(BombStateName stateName)
+    {
+        item[(int)stateName]--;
     }
     void OnMove(InputValue inputValue)
     {

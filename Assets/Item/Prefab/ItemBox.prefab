@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1889532420983820649}
   - component: {fileID: 1889532420983820648}
   - component: {fileID: 3677799136113941748}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ItemRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 1889532421401552671}
   - component: {fileID: 1889532421401552668}
   - component: {fileID: 1889532421401552669}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ItemBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

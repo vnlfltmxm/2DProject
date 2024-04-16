@@ -33,11 +33,12 @@ public class HormingBomb : BombBaseState
         if (isCheck)
         {
             bomb.rigid.velocity = Vector2.zero;
-            bomb.rigid.AddForce(targetPos * 3000 * Time.deltaTime);
+            bomb.rigid.AddForce(targetPos * 1000 * Time.deltaTime);
         }
 
     }
     public override void OnExitState()
     {
+        bomb.Parent.GetComponent<PlayerController>().ItemUse(BombStateName.Horming);
     }
 }
