@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlusBomb : BombBaseState
+public class PlusBomb : BaseState<Bomb>
 {
     Animator playerAnimator;
     public PlusBomb(Bomb bomb) : base(bomb)
@@ -16,16 +16,16 @@ public class PlusBomb : BombBaseState
     }
     public override void OnUpdateState()
     {
-        bomb.rigid.AddForce(GameManger.Instance.wind * Time.deltaTime);
     }
     public override void OnFixedUpdateState()
     {
+        Controller.rigid.AddForce(GameManger.Instance.wind * Time.deltaTime);
 
     }
     public override void OnExitState()
     {
         ReThrow();
-        bomb.Parent.GetComponent<PlayerController>().ItemUse(BombStateName.Plus);
+        Controller.Parent.GetComponent<PlayerController>().ItemUse(BombStateName.Plus);
     }
 
     public void ReThrow()

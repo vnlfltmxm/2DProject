@@ -5,13 +5,13 @@ using UnityEngine.Tilemaps;
 
 public class Explosion : MonoBehaviour
 {
-    [SerializeField] GameObject effect;
-    PlayerController player;
+    
+    GameObject parent;
     CircleCollider2D circleCollider;
 
     private void Awake()
     {
-        player = transform.parent.GetComponent<Bomb>().Parent.GetComponent<PlayerController>();
+        parent = transform.parent.GetComponent<Bomb>().Parent;
         circleCollider = GetComponent<CircleCollider2D>();
     }
     // Start is called before the first frame update
@@ -46,15 +46,20 @@ public class Explosion : MonoBehaviour
 
     private void OnEnable()
     {
-        effect.SetActive(true);
-        effect.transform.position = transform.position;
+       
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer.Equals(LayerMask.NameToLayer("Unit"))) 
         {
-            player.Hit();//나중에 콜리전.게임오브젝트.겟컴포넌트<유닛>으로 뺄것 안되면 개인이 처리하게끔 할것
-
+            if (collision.CompareTag("Player"))
+            {
+                collision.GetComponent<PlayerController>().Hit();//나중에 콜리전.게임오브젝트.겟컴포넌트<유닛>으로 뺄것 안되면 개인이 처리하게끔 할것
+            }
+            else if(collision.CompareTag("Enemy"))
+            {
+                collision.GetComponent<EnemyController>().Hit();
+            }
             //타일맵파괴
         }
 
@@ -62,15 +67,28 @@ public class Explosion : MonoBehaviour
         {
             DestroyTile(collision.gameObject);
         }
-
+            transform.parent.gameObject.SetActive(false);
         //CameraController.target = player.gameObject;
-        transform.parent.gameObject.SetActive(false);
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        player.playerState.ChangeState(StateName.Move);
-        GameManger.Instance.playerTurn = false;
+        if (parent.CompareTag("Player"))
+        {
+            
+            parent.GetComponent<PlayerController>().playerState.ChangeState(PlayerStateName.Move);
+            GameManger.Instance.playerTurn = false;
+            GameManger.Instance.Invoke("EnemyTurn", 2);
+        }
+        else if(parent.CompareTag("Enemy"))
+        {
+            parent.GetComponent<EnemyController>().state.ChangeState(EnemyStateName.Move);
+            GameManger.Instance.enemyTurn = false;
+            GameManger.Instance.isItem = true;
+            GameManger.Instance.Invoke("SpawnItem", 2);
+        }
+        
         //GameManger.Instance.playerThrow = false;
     }
 }

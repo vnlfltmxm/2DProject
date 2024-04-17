@@ -7,7 +7,6 @@ public class ItemBox : MonoBehaviour
     Rigidbody2D rd;
     float time;
     float maxTime;
-
     private void Awake()
     {
         rd = transform.parent.GetComponent<Rigidbody2D>();
@@ -33,6 +32,8 @@ public class ItemBox : MonoBehaviour
         {
             rd.gravityScale = 1.0f;
         }
+
+
     }
 
 
@@ -59,10 +60,14 @@ public class ItemBox : MonoBehaviour
             transform.parent.gameObject.SetActive(false);
         }
 
-        if (!collision.CompareTag("Bomb"))
+        if (rd.velocity.y < 0)
         {
-            GameManger.Instance.playerTurn = true;
+            GameManger.Instance.Invoke("PlayerTurn", 2);
         }
+        //if (!collision.CompareTag("Bomb") && !collision.transform.gameObject.layer.Equals(LayerMask.NameToLayer("Unit")))
+        //{
+        //    GameManger.Instance.Invoke("PlayerTurn", 2);
+        //}
     }
 
 }

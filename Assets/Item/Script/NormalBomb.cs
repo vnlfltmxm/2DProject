@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalBomb : BombBaseState
+public class NormalBomb : BaseState<Bomb>
 {
 
     public NormalBomb(Bomb bomb) : base(bomb)
@@ -16,10 +16,10 @@ public class NormalBomb : BombBaseState
     }
     public  override void OnUpdateState()
     {
-       bomb.rigid.AddForce(GameManger.Instance.wind * Time.deltaTime);
     }
     public  override void OnFixedUpdateState()
     {
+        Controller.rigid.AddForce(GameManger.Instance.wind * Time.deltaTime);
 
     }
     public  override void OnExitState()

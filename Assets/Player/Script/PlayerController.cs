@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour
     public PlayerUI playerUI;
     public bool isGround = false;
 
-    public PlayerState playerState;
+    //public PlayerState<PlayerController> playerState ;
+    public StateMachin<PlayerController> playerState;
     LineRenderer line;
     public SpriteRenderer spriteRenderer;
     Animator playerAnimator;
@@ -49,10 +50,10 @@ public class PlayerController : MonoBehaviour
         line = GetComponent<LineRenderer>();
         playerUI = GetComponent<PlayerUI>();
         Bomb = transform.GetChild(1).gameObject;
-        playerState = new PlayerState(StateName.Move, new Move(this));
+        
         item = new int[(int)BombStateName.Last];
         item[0] = 1;
-        item[1] = 1;
+        item[1] = 2;
         item[2] = 1;
         dirX = 1;
         playerItemUI =image.GetComponent<PlayerItemUI>();
@@ -63,6 +64,11 @@ public class PlayerController : MonoBehaviour
     {
         //playerState = GetComponent<PlayerState>();
         //InitState();
+    }
+
+    private void FixedUpdate()
+    {
+        FixGround();
     }
     // Update is called once per frame
     void Update()
@@ -88,13 +94,26 @@ public class PlayerController : MonoBehaviour
         {
             playerAnimator.SetBool("Die", true);
         }
+        
+    }
+
+    void FixGround()
+    {
+        if (isGround)
+        {
+            rigid.gravityScale = 0;
+        }
+        else
+        {
+            rigid.gravityScale = 1;
+        }
     }
 
     void Throw()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerState.ChangeState(StateName.ThrowReady);
+            playerState.ChangeState(PlayerStateName.ThrowReady);
 
         }
     }
@@ -154,7 +173,8 @@ public class PlayerController : MonoBehaviour
 
     void InitState()
     {
-        playerState.AddState(StateName.ThrowReady, new ThrowReady(this));
+        playerState = new StateMachin<PlayerController>(PlayerStateName.Move, new Move(this));
+        playerState.AddState(PlayerStateName.ThrowReady, new ThrowReady(this));
     }
 
 

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class HormingBomb : BombBaseState
+public class HormingBomb : BaseState<Bomb>
 {
     GameObject target;
     Vector2 targetPos;
     bool isCheck;
     public HormingBomb(Bomb bomb) : base(bomb)
     {
-        target =GameManger.Instance.player;
+        target =GameManger.Instance.enemy;
     }
 
     public override void OnEnterState()
@@ -22,23 +22,23 @@ public class HormingBomb : BombBaseState
     }
     public override void OnFixedUpdateState()
     {
-        if (bomb.rigid.velocity.y < 0 && !isCheck) 
+        if (Controller.rigid.velocity.y < 0 && !isCheck) 
         {
-            bomb.rigid.velocity = Vector2.zero;
-            targetPos = new Vector2(target.transform.position.x- bomb.transform.position.x,target.transform.position.y - bomb.transform.position.y);
+            Controller.rigid.velocity = Vector2.zero;
+            targetPos = new Vector2(target.transform.position.x- Controller.transform.position.x,target.transform.position.y - Controller.transform.position.y);
             //bomb.rigid.AddForce( targetPos*3000*Time.deltaTime);
             isCheck = true;
         }
         
         if (isCheck)
         {
-            bomb.rigid.velocity = Vector2.zero;
-            bomb.rigid.AddForce(targetPos * 1000 * Time.deltaTime);
+            Controller.rigid.velocity = Vector2.zero;
+            Controller.rigid.AddForce(targetPos * 1000 * Time.deltaTime);
         }
 
     }
     public override void OnExitState()
     {
-        bomb.Parent.GetComponent<PlayerController>().ItemUse(BombStateName.Horming);
+        Controller.Parent.GetComponent<PlayerController>().ItemUse(BombStateName.Horming);
     }
 }

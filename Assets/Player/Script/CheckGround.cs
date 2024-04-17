@@ -15,8 +15,17 @@ public class CheckGround : MonoBehaviour
     {
         if (collision.CompareTag("Ground"))
         {
-            transform.parent.GetComponent<PlayerController>().isGround = true;
-            parentAnimator.SetBool("IsGround", true);
+            if (transform.parent.CompareTag("Player"))
+            {
+                transform.parent.GetComponent<PlayerController>().isGround = true;
+                parentAnimator.SetBool("IsGround", true);
+            }
+            else 
+            {
+                transform.parent.GetComponent<EnemyController>().isGround = true;
+            }
+               
+            
         } 
     }
 
@@ -24,8 +33,16 @@ public class CheckGround : MonoBehaviour
     {
         if (collision.CompareTag("Ground"))
         {
-            transform.parent.GetComponent<PlayerController>().isGround = false;
-            parentAnimator.SetBool("IsGround", false);
+            if (transform.parent.CompareTag("Player"))
+            {
+                transform.parent.GetComponent<PlayerController>().isGround = false;
+                parentAnimator.SetBool("IsGround", false);
+            }
+            else
+            {
+                transform.parent.GetComponent<EnemyController>().isGround = false;
+            }
+            
         }
     }
 }

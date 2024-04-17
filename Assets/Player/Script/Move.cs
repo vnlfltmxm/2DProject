@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class Move : BaseState
+public class Move : BaseState<PlayerController>
 {
 
     public float speed = 5.0f;

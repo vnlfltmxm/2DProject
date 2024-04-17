@@ -1,0 +1,487 @@
+fileFormatVersion: 2
+guid: 4c7a50ccbe82a5646bc73b63b1637add
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 23
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: bansheeIdleAttack_600x440_6x4_-removebg-preview_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 214
+        width: 98
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cf3742430e50634ab33d47802daf620
+      internalID: 1590900889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bansheeIdleAttack_600x440_6x4_-removebg-preview_1
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 216
+        width: 88
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a1ba2862a63ecb4c8eeff2a34cc8b16
+      internalID: 1488004189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bansheeIdleAttack_600x440_6x4_-removebg-preview_2
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 216
+        width: 88
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5db59013e9f31d4381ab379fdd2e761
+      internalID: 1154119289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bansheeIdleAttack_600x440_6x4_-removebg-preview_3
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 215
+        width: 77
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4897f3cd3ab05bf42a6da1146274ad56
+      internalID: -188320813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bansheeIdleAttack_600x440_6x4_-removebg-preview_4
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 216
+        width: 88
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97c96fa0bc8a04d4abbbfa256065666a
+      internalID: -1913916358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bansheeIdleAttack_600x440_6x4_-removebg-preview_5
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 213
+        width: 89
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b9bedf96a976454badf3c9e4fa452bf
+      internalID: -1162711803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bansheeIdleAttack_600x440_6x4_-removebg-preview_6
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 111
+        width: 94
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63b858c1124826b44a6f032a481ec0e8
+      internalID: -281141553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bansheeIdleAttack_600x440_6x4_-removebg-preview_7
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 116
+        width: 83
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39b67634b89116743baa24d3835a589a
+      internalID: 777668939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bansheeIdleAttack_600x440_6x4_-removebg-preview_8
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 116
+        width: 84
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e74a6920b844f5448379a34926a1d9c
+      internalID: -135060685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bansheeIdleAttack_600x440_6x4_-removebg-preview_9
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 116
+        width: 84
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e49a4bc9e428284a8278271b5606d09
+      internalID: -1083608928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bansheeIdleAttack_600x440_6x4_-removebg-preview_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4
+        width: 93
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eece3887572053f4486d477662d3b5c9
+      internalID: -970695807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bansheeIdleAttack_600x440_6x4_-removebg-preview_11
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 9
+        width: 84
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 491ca0bad66c1034cb337a143f44c191
+      internalID: -1356067930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bansheeIdleAttack_600x440_6x4_-removebg-preview_12
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 4
+        width: 83
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81fca3dd8beb18548bfec67501ae0e8b
+      internalID: 495587272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bansheeIdleAttack_600x440_6x4_-removebg-preview_13
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 4
+        width: 73
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8d93c6eba19faa4aac0c631cbc929e2
+      internalID: -619449201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bansheeIdleAttack_600x440_6x4_-removebg-preview_14
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 9
+        width: 83
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 103e73b13dd33ec4fa75919ea57aa0f2
+      internalID: -1763437425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bansheeIdleAttack_600x440_6x4_-removebg-preview_15
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 9
+        width: 84
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ef4586a43b8ca34bbdf359ac2a51d02
+      internalID: -1049465078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      bansheeIdleAttack_600x440_6x4_-removebg-preview_0: 1590900889
+      bansheeIdleAttack_600x440_6x4_-removebg-preview_1: 1488004189
+      bansheeIdleAttack_600x440_6x4_-removebg-preview_10: -970695807
+      bansheeIdleAttack_600x440_6x4_-removebg-preview_11: -1356067930
+      bansheeIdleAttack_600x440_6x4_-removebg-preview_12: 495587272
+      bansheeIdleAttack_600x440_6x4_-removebg-preview_13: -619449201
+      bansheeIdleAttack_600x440_6x4_-removebg-preview_14: -1763437425
+      bansheeIdleAttack_600x440_6x4_-removebg-preview_15: -1049465078
+      bansheeIdleAttack_600x440_6x4_-removebg-preview_2: 1154119289
+      bansheeIdleAttack_600x440_6x4_-removebg-preview_3: -188320813
+      bansheeIdleAttack_600x440_6x4_-removebg-preview_4: -1913916358
+      bansheeIdleAttack_600x440_6x4_-removebg-preview_5: -1162711803
+      bansheeIdleAttack_600x440_6x4_-removebg-preview_6: -281141553
+      bansheeIdleAttack_600x440_6x4_-removebg-preview_7: 777668939
+      bansheeIdleAttack_600x440_6x4_-removebg-preview_8: -135060685
+      bansheeIdleAttack_600x440_6x4_-removebg-preview_9: -1083608928
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
