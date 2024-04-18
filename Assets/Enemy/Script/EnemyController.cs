@@ -10,6 +10,9 @@ public class EnemyController : MonoBehaviour
     GameObject bomb;
     public StateMachin<EnemyController> state;
     public Vector2 bombPos = Vector2.zero;
+    public Vector2 bombThrowPos = Vector2.zero;
+    public Vector2 targetPos = Vector2.zero;
+    public float throwPower;
     public float moveGage = 100f;
     public float dirX = 1;
     public bool isGround = false;
@@ -32,7 +35,7 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        FixGround();
+        //FixGround();
     }
 
     private void Update()
@@ -40,6 +43,7 @@ public class EnemyController : MonoBehaviour
         if (GameManger.Instance.enemyTurn)
         {
             CameraController.instanse.FollowCamera(gameObject);
+            DirX();
             state.UpdateState();
         }
 
@@ -65,6 +69,19 @@ public class EnemyController : MonoBehaviour
             rigid.gravityScale = 1;
         }
     }
+
+    void DirX()
+    {
+        if (GameManger.Instance.player.transform.position.x - transform.position.x < 0)
+        {
+            dirX = -1;
+        }
+        else if(GameManger.Instance.player.transform.position.x - transform.position.x > 0)
+        {
+            dirX = 1;
+        }
+    }
+
     void SetBomb()
     {
         bomb.SetActive(true);

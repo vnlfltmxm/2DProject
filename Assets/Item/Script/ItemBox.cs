@@ -54,16 +54,17 @@ public class ItemBox : MonoBehaviour
             }
         }
 
+        if (rd.velocity.y < 0)
+        {
+            GameManger.Instance.Invoke("PlayerTurn", 2);
+        }
+
         if (!collision.CompareTag("Ground"))
         {
             GameManger.Instance.itemBoxPool.Enqueue(transform.parent.gameObject);
             transform.parent.gameObject.SetActive(false);
         }
 
-        if (rd.velocity.y < 0)
-        {
-            GameManger.Instance.Invoke("PlayerTurn", 2);
-        }
         //if (!collision.CompareTag("Bomb") && !collision.transform.gameObject.layer.Equals(LayerMask.NameToLayer("Unit")))
         //{
         //    GameManger.Instance.Invoke("PlayerTurn", 2);

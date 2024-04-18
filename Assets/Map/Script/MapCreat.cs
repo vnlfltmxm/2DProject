@@ -98,11 +98,11 @@ public class MapCreat : MonoBehaviour
             {
                 if (k + 1 < height && map[i, k] == 1 && map[i, k + 1] == 0)
                 {
-                    if (i + 1 < width && map[i + 1, k] == 0) 
+                    if (i + 1 < width && map[i + 1, k] == 0)
                     {
                         tilemap.SetTile(new Vector3Int(i + adjustmentX, k + adjustmentY, 0), leftTile);
                     }
-                    else if(i - 1 > 0 && map[i - 1, k] == 0)
+                    else if (i - 1 > 0 && map[i - 1, k] == 0)
                     {
                         tilemap.SetTile(new Vector3Int(i + adjustmentX, k + adjustmentY, 0), rightTile);
                     }

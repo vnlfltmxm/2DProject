@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        FixGround();
+        //FixGround();
     }
     // Update is called once per frame
     void Update()

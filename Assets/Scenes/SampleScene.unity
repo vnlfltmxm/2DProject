@@ -921,7 +921,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   bombPos: {x: 0, y: 0}
-  moveGage: 50
+  bombThrowPos: {x: 0, y: 0}
+  targetPos: {x: 0, y: 0}
+  throwPower: 0
+  moveGage: 100
   dirX: 1
   isGround: 0
 --- !u!70 &1022343383
@@ -1379,8 +1382,8 @@ MonoBehaviour:
   smooth: 20
   topTile: {fileID: 11400000, guid: bb3520a55781a954abe89b92bcdc313f, type: 2}
   soilTile: {fileID: 11400000, guid: 32661da8ce8dd3644bc6468732fc6bf5, type: 2}
-  leftTile: {fileID: 11400000, guid: b7db3835f44776744aa6b17f5fe0bd26, type: 2}
-  rightTile: {fileID: 11400000, guid: 441afb49a6a3c8e41820d8d218442054, type: 2}
+  leftTile: {fileID: 11400000, guid: 70ef95d2121c6204d95aeb88bfbc0504, type: 2}
+  rightTile: {fileID: 11400000, guid: dbd12c47406d66c4d837cd67f6157a9f, type: 2}
   soilLeftTile: {fileID: 11400000, guid: 01eacddc850c8594d98ac323a25210ac, type: 2}
   soilRightTile: {fileID: 11400000, guid: d8dc96555df42e94dba565eae3e3e30d, type: 2}
   tilemap: {fileID: 669353604}
@@ -1621,11 +1624,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2345082558744360053, guid: 4fb0995d172818548807526c656cfd75, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.38
+      value: -12.7
       objectReference: {fileID: 0}
     - target: {fileID: 2345082558744360053, guid: 4fb0995d172818548807526c656cfd75, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.5
+      value: -4.6
       objectReference: {fileID: 0}
     - target: {fileID: 2345082558744360053, guid: 4fb0995d172818548807526c656cfd75, type: 3}
       propertyPath: m_LocalPosition.z

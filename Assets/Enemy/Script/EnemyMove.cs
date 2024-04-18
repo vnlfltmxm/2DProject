@@ -15,7 +15,7 @@ public class EnemyMove : BaseState<EnemyController>
     public override void OnEnterState()
     {
         //Controller.enabled = true;
-        Controller.moveGage = 50;
+        Controller.moveGage = 100;
     }
     public override void OnUpdateState()
     {

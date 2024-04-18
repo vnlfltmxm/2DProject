@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class Bomb : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class Bomb : MonoBehaviour
     {
         
 
+
     }
 
     private void OnEnable()
@@ -37,8 +39,50 @@ public class Bomb : MonoBehaviour
         }
         else
         {
-            transform.position = Parent.transform.position;
-            destination = GetComponentInParent<EnemyController>().bombPos * 1.5f;
+            transform.position =(Vector3)GetComponentInParent<EnemyController>().bombPos;
+            //transform.position = destination;
+            //destination = (GetComponentInParent<EnemyController>().bombThrowPos -GetComponentInParent<EnemyController>().bombPos);
+            if (GameManger.Instance.wind.x / 50 <= 0)
+            {
+                destination = (GetComponentInParent<EnemyController>().bombThrowPos - (Vector2)transform.parent.position);
+                destination *= (GetComponentInParent<EnemyController>().throwPower);
+            }
+            else 
+            {
+                float rd = Random.Range(GetComponentInParent<EnemyController>().bombThrowPos.y / 2, GetComponentInParent<EnemyController>().bombThrowPos.y);
+                Vector2 t = new Vector2(GetComponentInParent<EnemyController>().bombThrowPos.x, rd);
+                destination = (t - (Vector2)transform.parent.position);
+                //destination *= GetComponentInParent<EnemyController>().bombThrowPos;
+                float r = Random.Range(1, 4);
+                destination *= (GetComponentInParent<EnemyController>().throwPower* r);
+            }
+            
+            //float throwPower = transform.parent.transform.position.x- GameManger.Instance.player.transform.position.x;
+            //Vector2 throwPower = (GameManger.Instance.player.transform.position + (Vector3)GetComponentInParent<EnemyController>().bombThrowPos);
+            //Vector2 throwPower = transform.parent.transform.position + (Vector3)GetComponentInParent<EnemyController>().bombThrowPos;
+            //Vector2 throwPower= transform.parent.position+(Vector3)GetComponentInParent<EnemyController>().bombThrowPos;
+            // destination =  (Vector3)GetComponentInParent<EnemyController>().bombThrowPos- transform.parent.position;
+            // destination *= (transform.parent.transform.position.x+GameManger.Instance.player.transform.position.x);
+            //float t=Vector2.Distance(GetComponentInParent<EnemyController>().bombThrowPos, transform.parent.position);
+            //destination *=throwPower;
+            //destination *= (Vector2.Distance(GameManger.Instance.player.transform.position, GetComponentInParent<EnemyController>().bombThrowPos));
+            //destination *= Vector3.Distance(GameManger.Instance.player.transform.position , transform.parent.transform.position);
+            //destination *= (Vector3.Distance(GameManger.Instance.player.transform.position, GetComponentInParent<EnemyController>().bombPos) -Vector3.Distance(GetComponentInParent<EnemyController>().bombThrowPos, GetComponentInParent<EnemyController>().bombPos));
+            //destination *= GameManger.Instance.wind.x / 10;
+            ////중력을 가져옴
+            //Vector2 gravity = Physics2D.gravity;
+
+            ////각도 구하기(라디안
+            //float angle = /*Mathf.Cos(GetComponentInParent<EnemyController>().bombThrowPos.y)*/45f * Mathf.Deg2Rad;
+            ////수평성분
+            //float h = gravity.magnitude * Mathf.Cos(angle);
+            ////질량
+            //float mass = rigid.mass;
+            ////힘
+            //float force = mass * h;
+            //destination = (GetComponentInParent<EnemyController>().bombThrowPos.x > 0) ? Vector2.right : Vector2.left;//new Vector2(GetComponentInParent<EnemyController>().bombThrowPos.x, 0);
+            //destination *= force;
+
         }
         gameObject.transform.SetParent(null);
         CameraController.instanse.FollowCamera(this.gameObject);
