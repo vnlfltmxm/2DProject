@@ -33,7 +33,7 @@ public class LeafManger : Singleton<LeafManger>
     {
         while (true)
         {
-            yield return new WaitForSecondsRealtime(1.5f);
+            yield return new WaitForSeconds(1.5f);
 
             for(int i =0; i < 5; i++)
             {

@@ -44,17 +44,19 @@ public class Bomb : MonoBehaviour
             //destination = (GetComponentInParent<EnemyController>().bombThrowPos -GetComponentInParent<EnemyController>().bombPos);
             if (GameManger.Instance.wind.x / 50 <= 0)
             {
-                destination = (GetComponentInParent<EnemyController>().bombThrowPos - (Vector2)transform.parent.position);
-                destination *= (GetComponentInParent<EnemyController>().throwPower);
+                //destination = (GetComponentInParent<EnemyController>().bombThrowPos - (Vector2)transform.parent.position);
+                //destination *= (GetComponentInParent<EnemyController>().throwPower);
+                destination = GetComponentInParent<EnemyController>().bombThrowPos * GetComponentInParent<EnemyController>().throwPower;
             }
             else 
             {
-                float rd = Random.Range(GetComponentInParent<EnemyController>().bombThrowPos.y / 2, GetComponentInParent<EnemyController>().bombThrowPos.y);
-                Vector2 t = new Vector2(GetComponentInParent<EnemyController>().bombThrowPos.x, rd);
-                destination = (t - (Vector2)transform.parent.position);
-                //destination *= GetComponentInParent<EnemyController>().bombThrowPos;
                 float r = Random.Range(1, 4);
-                destination *= (GetComponentInParent<EnemyController>().throwPower* r);
+                //float rd = Random.Range(GetComponentInParent<EnemyController>().bombThrowPos.y / 2, GetComponentInParent<EnemyController>().bombThrowPos.y);
+                //Vector2 t = new Vector2(GetComponentInParent<EnemyController>().bombThrowPos.x, rd);
+                //destination = (t - (Vector2)transform.parent.position);
+                //destination *= GetComponentInParent<EnemyController>().bombThrowPos;
+                destination = GetComponentInParent<EnemyController>().bombThrowPos * GetComponentInParent<EnemyController>().throwPower;
+               // destination *= (GetComponentInParent<EnemyController>().throwPower* r);
             }
             
             //float throwPower = transform.parent.transform.position.x- GameManger.Instance.player.transform.position.x;

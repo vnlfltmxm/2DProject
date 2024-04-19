@@ -1,31 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class EnemyController : MonoBehaviour
 {
     [HideInInspector] public Animator animator;
-
 
     GameObject bomb;
     public StateMachin<EnemyController> state;
     public Vector2 bombPos = Vector2.zero;
     public Vector2 bombThrowPos = Vector2.zero;
     public Vector2 targetPos = Vector2.zero;
+    public Rigidbody2D rigid;
     public float throwPower;
     public float moveGage = 100f;
     public float dirX = 1;
+    public float hp = 3;
     public bool isGround = false;
+    public bool isMoving = false;
 
-    Rigidbody2D rigid;
+    SpriteRenderer spriteRenderer;
     float moveSpeed = 5.0f;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         bomb = transform.GetChild(1).gameObject;
         InitState();
+        state.ChangeState(EnemyStateName.Move);
     }
 
     private void Start()
@@ -47,15 +52,20 @@ public class EnemyController : MonoBehaviour
             state.UpdateState();
         }
 
-        if(Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             state.ChangeState(EnemyStateName.Attack);
+        }
+        if (hp <= 0)
+        {
+            GameManger.Instance.isGameClear = true;
         }
     }
 
     public void Hit()
     {
         animator.SetTrigger("Hit");
+        hp--;
     }
 
     void FixGround()
@@ -85,10 +95,22 @@ public class EnemyController : MonoBehaviour
     void SetBomb()
     {
         bomb.SetActive(true);
+        GameManger.Instance.enemyTurn = false;
     }
     void InitState()
     {
         state = new StateMachin<EnemyController>(EnemyStateName.Move, new EnemyMove(this));
         state.AddState(EnemyStateName.Attack,new EnemyAttack(this));
+    }
+    public void MoveRender(float dirX)
+    {
+        if (dirX < 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (dirX > 0)
+        {
+            spriteRenderer.flipX = true;
+        }
     }
 }

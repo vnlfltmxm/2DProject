@@ -6,16 +6,17 @@ using UnityEngine.TestTools;
 
 public class EnemyMove : BaseState<EnemyController>
 {
-    public float moveSpeed = 5.0f;
-    Vector2 dirX = new Vector2(1, 0);
+    float moveSpeed = 5.0f;
+    Vector2 moveDir = Vector2.zero;
     public EnemyMove(EnemyController controller) : base(controller)
     {
     }
 
     public override void OnEnterState()
     {
-        //Controller.enabled = true;
+        Controller.rigid.velocity = Vector2.zero;
         Controller.moveGage = 100;
+        moveDir = ChoseDir() ;
     }
     public override void OnUpdateState()
     {
@@ -27,16 +28,31 @@ public class EnemyMove : BaseState<EnemyController>
     }
     public override void OnExitState()
     {
-
+        Controller.rigid.velocity = Vector2.zero;
     }
     private void Move()
     {
-        if (Controller.moveGage > 0)
+        float moveRange = Random.Range(0, Controller.moveGage + 1);
+        if (moveRange > 0)
         {
-            Vector2 move = dirX * moveSpeed * Time.deltaTime;
+            Vector2 move = moveDir * moveSpeed * Time.deltaTime;
+            Controller.MoveRender(move.x);
             Controller.transform.Translate(move);
             Controller.moveGage -= 0.1f;
         }
-
+        else
+        {
+            Controller.MoveRender(Controller.dirX);
+            Controller.state.ChangeState(EnemyStateName.Attack);
+        }
     }
+
+    private Vector2 ChoseDir()
+    {
+        int dir = Random.Range(-1, 2);
+
+        return new Vector2(dir, 0);
+    }
+    
+
 }

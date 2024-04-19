@@ -7,6 +7,7 @@ public class ItemBox : MonoBehaviour
     Rigidbody2D rd;
     float time;
     float maxTime;
+    bool isGround = false;
     private void Awake()
     {
         rd = transform.parent.GetComponent<Rigidbody2D>();
@@ -33,7 +34,7 @@ public class ItemBox : MonoBehaviour
             rd.gravityScale = 1.0f;
         }
 
-
+       
     }
 
 
@@ -54,9 +55,14 @@ public class ItemBox : MonoBehaviour
             }
         }
 
-        if (rd.velocity.y < 0)
+        if (!collision.CompareTag("Bomb") && rd.velocity.y < 0) 
         {
             GameManger.Instance.Invoke("PlayerTurn", 2);
+            if (isGround && collision.gameObject.layer.Equals(LayerMask.NameToLayer("Unit"))) 
+            {
+                GameManger.Instance.CancelInvoke("PlayerTurn");
+            }
+            isGround = true;
         }
 
         if (!collision.CompareTag("Ground"))

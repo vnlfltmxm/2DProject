@@ -18,6 +18,18 @@ public class HPBar : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(parent.transform.position.x, parent.transform.position.y - 5, 0);
-        size.size = new Vector2(0.1f * parent.GetComponent<PlayerController>().hp, size.size.y);
+        ReSize();
+    }
+
+    void ReSize()
+    {
+        if (parent.CompareTag("Player") )
+        {
+            size.size = new Vector2(0.1f * parent.GetComponent<PlayerController>().hp, size.size.y);
+        }
+        else
+        {
+            size.size = new Vector2(0.1f * parent.GetComponent<EnemyController>().hp, size.size.y);
+        }
     }
 }

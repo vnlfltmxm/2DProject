@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.U2D.Path;
+//using UnityEditor.U2D.Path;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour
 
         if (hp <= 0)
         {
+            GameManger.Instance.isGameOver = true;
             playerAnimator.SetBool("Die", true);
         }
         

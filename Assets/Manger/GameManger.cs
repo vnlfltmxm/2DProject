@@ -15,6 +15,8 @@ public class GameManger : Singleton<GameManger>
     public bool playerTurn = true;
     public bool enemyTurn = true;
     public bool isItem = false;
+    public bool isGameOver = false;
+    public bool isGameClear = false;
     public Queue<GameObject> itemBoxPool = new Queue<GameObject>();
 
     PlayerController playerController;
@@ -24,12 +26,14 @@ public class GameManger : Singleton<GameManger>
 
     private void Awake()
     {
+        Time.timeScale = 1;
         playerTurn = false;
         enemyTurn = false;
         isItem = false;
+        isGameOver = false;
+        isGameClear = false;
         bgCollider = backGround.GetComponent<BoxCollider2D>();
         playerController = player.GetComponent<PlayerController>();
-
         CreatWind();
     }
 
@@ -50,12 +54,11 @@ public class GameManger : Singleton<GameManger>
     // Update is called once per frame
     void Update()
     {
-        //if (playerTurn && !playerThrow) 
-        //{
-        //    playerController.playerState.ChangeState(StateName.Move);
-        //}
-       
-
+        if (isGameClear || isGameOver)
+        {
+            Time.timeScale = 0;
+            StopAllCoroutines();
+        }
     }
     void PlayerTurn()
     {
