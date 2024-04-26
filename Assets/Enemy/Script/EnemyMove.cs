@@ -38,7 +38,7 @@ public class EnemyMove : BaseState<EnemyController>
             Vector2 move = moveDir * moveSpeed * Time.deltaTime;
             Controller.MoveRender(move.x);
             Controller.transform.Translate(move);
-            Controller.moveGage -= 0.1f;
+            Controller.moveGage -= 20f*Time.deltaTime;
         }
         else
         {

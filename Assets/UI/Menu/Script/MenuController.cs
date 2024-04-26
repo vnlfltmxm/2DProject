@@ -33,7 +33,8 @@ public class MenuController : MonoBehaviour
                 text.text = "GameClear";
             }
         }
-        else if (Input.GetKeyUp(KeyCode.Escape))
+        
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
             OpenMenu();
         }

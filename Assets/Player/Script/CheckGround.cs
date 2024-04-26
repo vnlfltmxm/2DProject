@@ -26,7 +26,22 @@ public class CheckGround : MonoBehaviour
             }
                
             
-        } 
+        }
+
+        if (collision.CompareTag("DeadZone"))
+        {
+            if (transform.parent.CompareTag("Player"))
+            {
+                transform.parent.GetComponent<PlayerController>().hp = 0;
+                parentAnimator.SetBool("IsGround", true);
+            }
+            else
+            {
+                transform.parent.GetComponent<EnemyController>().hp = 0;
+                transform.parent.GetComponent<EnemyController>().isGround = true;
+            }
+
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

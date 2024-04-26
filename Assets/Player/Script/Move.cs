@@ -61,7 +61,7 @@ public class Move : BaseState<PlayerController>
         else
         {
             Controller.playerUI.EnabledMoveGage();
-            Controller.moveGage -= 0.1f;
+            Controller.moveGage -= 20f*Time.deltaTime;
         }
 
         
